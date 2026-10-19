@@ -1,0 +1,27 @@
+# Local hosting metadata and credentials
+.openai/
+.vercel/
+**/.vercel/
+deployment.json
+.env
+.env.*
+!.env.example
+
+# Generated exports and development caches
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+mosslight-game.zip
+mosslight-standalone.html
+desktop.png
+playing.png
+
+# Earlier one-off development scripts and snapshots
+game-before-upgrade.js
+*-patch.py
+fullscreen-update.py
+*-data.txt
+*-functions.txt
+combat-notes.md
+check.cjs

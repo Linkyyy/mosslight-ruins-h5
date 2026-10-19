@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081b17"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="description" content="走入被遗忘的地下王国。掌握元素，探索遗迹，唤醒古树之心。原创横版动作冒险游戏。">
+<title>苔光遗境 · MOSSLIGHT</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23141f1a'/%3E%3Cpath d='M20 32V18C4 18 6 4 6 4s15 0 14 14C20 5 34 7 34 7s3 12-14 14' fill='%23c6dd9b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="map-ui.css"><link rel="stylesheet" href="inventory-ui.css"><link rel="stylesheet" href="rpg-ui.css">
+</head>
+<body class="game-app">
+<svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21V11M12 15C3 15 3 4 3 4s10 0 9 11ZM12 11C12 3 21 3 21 3s1 9-9 10"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6 6-2Z"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5ZM9 3v16M15 5v16"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l2 14H4L6 7ZM8 7V5a4 4 0 0 1 8 0v2M9 12h6"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-4-3-9-2-9-2v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2v16"/></symbol>
+<symbol id="i-sword" viewBox="0 0 24 24"><path d="m7 17 12-14h3v3L9 19M4 14l7 7M2 22l5-5"/></symbol>
+<symbol id="i-bow" viewBox="0 0 24 24"><path d="M4 3c17 0 17 17 17 17L4 3Zm0 0L3 21l18-1M3 21 19 5m-5 0h5v5"/></symbol>
+<symbol id="i-fire" viewBox="0 0 24 24"><path d="M13 2c2 7-5 7-2 12 3-1 4-4 4-4 9 8 2 13-3 12C1 22 2 12 7 8c-1 5 3 5 3 5-3-6 3-7 3-11Z"/></symbol>
+<symbol id="i-ice" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M8 4l4 3 4-3M8 20l4-3 4 3M3 11l5-1-1-5M21 13l-5 1 1 5M3 13l5 1-1 5M21 11l-5-1 1-5"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21 3 12C-3 4 8-2 12 6c4-8 15-2 9 6l-9 9Z"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5V4Zm4 4c3 2 3 6 0 8m3-12c6 4 6 12 0 16"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8a3 3 0 0 1 6 0c0 3-3 2-3 6m0 2v2"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+<symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6l8-4ZM12 6v11m-4-6h8"/></symbol>
+<symbol id="i-cloak" viewBox="0 0 24 24"><path d="M8 4c0-4 8-4 8 0l-1 4 6 13H3L9 8 8 4Zm1 4h6M12 9v12"/></symbol>
+<symbol id="i-gem" viewBox="0 0 24 24"><path d="m12 2 8 9-8 11-8-11 8-9Zm0 0v20M4 11h16"/></symbol>
+<symbol id="i-ring" viewBox="0 0 24 24"><path d="m12 2 4 4-4 4-4-4 4-4Zm-4 7a8 8 0 1 0 8 0M8 13a4 4 0 1 0 8 0"/></symbol>
+<symbol id="i-potion" viewBox="0 0 24 24"><path d="M9 2h6M10 2v7c-9 7-7 13 2 13s11-6 2-13V2M5 15h14m-10 3h1m4-2h1"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M8 2h8M9 2v7L4 19l2 3h12l2-3-5-10V2M7 15h10m-5 3h1"/></symbol>
+<symbol id="i-bomb" viewBox="0 0 24 24"><circle cx="11" cy="15" r="7"/><path d="m14 9 2-4 3 1 1-3M9 10h5m7-1 2 1m-3-8V0"/></symbol>
+<symbol id="i-ore" viewBox="0 0 24 24"><path d="m4 8 8-6 8 6 2 11-10 3-10-3L4 8Zm8-6 3 11-3 9-4-9 4-11M4 8l4 5 7 0 5-5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol><symbol id="i-heal" viewBox="0 0 24 24"><path d="M12 21V8m0 5C1 13 3 3 3 3s10 0 9 10Zm0-4C12 0 21 2 21 2s2 9-9 10M7 18h10"/></symbol><symbol id="i-jump" viewBox="0 0 24 24"><path d="M12 21V4m-7 7 7-7 7 7M4 21h16"/></symbol><symbol id="i-dash" viewBox="0 0 24 24"><path d="m13 4 6 8-6 8M4 7h6m-9 5h15M4 17h6"/></symbol><symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 13V5a2 2 0 0 1 4 0v6-8a2 2 0 0 1 4 0v8-5a2 2 0 0 1 4 0v8c0 6-3 8-8 8-4 0-5-4-8-8a2 2 0 0 1 3-3l3 4"/></symbol></defs></svg>
+
+<main class="game-frame" id="gameFrame" aria-label="苔光遗境 · 横版动作冒险">
+<canvas id="game" width="1280" height="720" tabindex="0" aria-label="苔光遗境游戏画面，A D 移动，空格跳跃，J 攻击，K 施法，E 互动"></canvas>
+<div class="game-vignette"></div>
+<div class="hud">
+ <div class="vital game-ui"><div class="hearts" id="hearts"></div><div class="energy"><span id="manaFill"></span></div><span class="hud-small">灵息 <b id="manaText">100</b></span></div>
+ <div class="location game-ui"><span id="roomTag">遗忘之森 · 01</span><strong id="roomName">苔息庭院</strong></div>
+ <nav class="hud-actions" aria-label="游戏菜单">
+  <button class="icon-button" data-modal="map" title="地图 M" aria-label="打开地图"><svg><use href="#i-map"/></svg></button>
+  <button class="icon-button" data-modal="bag" title="背包 B" aria-label="打开背包"><svg><use href="#i-bag"/></svg></button>
+  <button class="icon-button" data-modal="journal" title="冒险手记" aria-label="打开冒险手记"><svg><use href="#i-book"/></svg></button>
+  <button class="icon-button" id="soundBtn" title="开启环境音效" aria-label="开启环境音效"><svg><use href="#i-sound"/></svg><span class="mute-mark">×</span></button>
+  <button class="icon-button" id="fullscreenBtn" title="全屏 F" aria-label="进入全屏"><svg><use href="#i-fullscreen"/></svg></button>
+  <button class="icon-button game-pause" id="pauseBtn" title="暂停 Esc" aria-label="暂停"><svg><use href="#i-pause"/></svg></button>
+ </nav>
+</div>
+<section class="quest-tracker game-ui" aria-label="当前任务"><div class="card-heading"><span><i></i> 沉睡的根脉</span><small id="questPercent">0%</small></div><div id="questList" class="quest-list"></div><div class="quest-footer"><div><i id="questProgress"></i></div></div></section>
+<section class="map-card game-ui" aria-label="区域小地图"><button id="miniMapButton" data-modal="map" title="展开地图 M"><canvas id="minimap" width="440" height="264" aria-label="已探索区域"></canvas></button><div class="map-legend"><span><i></i> 你的位置</span><span id="explorationText">探索 1 / 6</span></div></section>
+<div class="region-title game-ui" id="regionTitle"><span>THE MOSS GARDEN</span><strong>苔息庭院</strong><i></i></div>
+<div class="game-corner game-ui"><span class="corner-dot"></span><span id="statusText">世界正在呼吸</span></div>
+<div class="coins game-ui"><span>✧</span><b id="coinCount">0</b></div>
+<section class="start-screen" id="startPrompt" aria-label="游戏标题画面">
+ <div class="start-brand"><svg><use href="#i-leaf"/></svg><span>AN ADVENTURE BENEATH THE ROOTS</span></div>
+ <div class="eyebrow">M O S S L I G H T</div><h1>苔光遗境</h1>
+ <p class="start-subtitle">循着微光，唤醒沉睡的世界。</p>
+ <button id="startBtn" class="primary-btn"><span>启程</span><svg><use href="#i-arrow"/></svg></button>
+ <div class="start-secondary"><button data-modal="help">旅者指南</button><span>·</span><button data-modal="journal">冒险手记</button></div>
+ <p class="start-note" id="worldTip">沿微光前行，拾起遗境中失落的力量。</p>
+</section>
+<div class="toast" id="toast" role="status"></div><div class="interact" id="interactHint"></div>
+<div class="boss-hud hidden game-ui" id="bossHud"><span>根骸守卫 · THE HOLLOW ROOT</span><div><i id="bossFill"></i></div></div>
+<nav class="quick-rail game-ui" aria-label="探索快捷栏"><button class="quick-icon locked" id="weaponCycle" title="武器尚未发现" aria-label="切换已发现武器"><svg><use href="#i-sword"/></svg></button><button class="quick-icon locked" id="elementCycle" title="灵印尚未发现" aria-label="切换已发现元素"><svg><use href="#i-gem"/></svg></button><button class="quick-icon locked" id="healQuick" data-key="KeyR" aria-label="回春之种尚未发现"><svg><use href="#i-heal"/></svg></button><i class="rail-divider"></i><button class="quick-icon" data-quick-slot="0" title="道具 3"></button><button class="quick-icon" data-quick-slot="1" title="道具 4"></button><button class="quick-icon" data-quick-slot="2" title="道具 5"></button></nav>
+<div class="touch-controls game-ui"><div class="move-pad" id="movePad" role="group" aria-label="虚拟摇杆，向左或向右拖动移动"><span class="stick-arrows">◁　▷</span><span id="stickKnob"></span></div><div class="action-pad"><button class="touch-interact" data-key="KeyE" aria-label="互动"><svg><use href="#i-hand"/></svg></button><button class="touch-dash" data-key="ShiftLeft" aria-label="冲刺"><svg><use href="#i-dash"/></svg></button><button class="touch-cast" data-key="KeyK" aria-label="元素施法"><svg><use href="#i-lock"/></svg></button><button class="touch-attack" data-key="KeyJ" aria-label="武器攻击"><svg><use href="#i-lock"/></svg></button><button class="touch-jump" data-key="Space" aria-label="跳跃，按住跳得更高"><svg><use href="#i-jump"/></svg></button></div></div>
+<div class="modal-wrap rpg-menu hidden" id="modalWrap" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><section class="modal" id="gameMenu"><button class="close-modal" id="closeModal" aria-label="关闭菜单">×</button><div class="eyebrow" id="modalEyebrow">MOSSLIGHT · FIELD NOTES</div><h2 id="modalTitle"></h2><nav id="menuTabs" class="menu-tabs" aria-label="游戏菜单分类"></nav><div id="modalBody"></div></section></div>
+<div class="rotate-overlay" id="rotateOverlay" role="dialog" aria-modal="true" aria-label="请横屏游玩"><div class="rotate-glyph"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="31" y="12" width="38" height="70" rx="7"/><path d="M46 72h8M14 43a37 37 0 0 1 14-25m-14 25-4-13m4 13 12-6m60 20a37 37 0 0 1-14 25m14-25 4 13m-4-13-12 6"/></svg></div><div class="eyebrow">MOSSLIGHT</div><h2>将设备横过来</h2><p>更宽阔的遗境，等待你的探索。</p><button id="rotateFullscreenBtn" class="primary-btn">进入横屏全屏 ↗</button><small>无法自动旋转时，请关闭系统方向锁定并横持设备。</small></div>
+</main>
+<script src="map-ui.js"></script><script src="game.js"></script>
+</body></html>
